@@ -6,6 +6,7 @@ import time
 import copy
 import logging
 import random
+import ssl
 
 import smtplib
 from email.mime.text import MIMEText
@@ -204,10 +205,12 @@ def send_email(sign_list):
         <hr>
         """
     msg = MIMEText(body, 'html', 'utf-8')
+    # 创建SSL上下文对象
+    context = ssl.create_default_context()
     msg['subject'] = subject
     smtp = smtplib.SMTP()
     smtp.connect(HOST)
-    smtp.starttls()
+    smtp.starttls(context:context)
     smtp.login(FROM, AUTH)
     smtp.sendmail(FROM, TO, msg.as_string())
     smtp.quit()
