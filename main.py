@@ -213,10 +213,10 @@ def send_email(sign_list):
     context = ssl.create_default_context()
     smtp = smtplib.SMTP('smtp.office365.com',587)
     # smtp.connect(HOST)
-    smtp.starttls(context=context)
-    smtp.login(FROM, AUTH)
-    smtp.sendmail(FROM, TO, msg.as_string())
-    smtp.quit()
+    # smtp.starttls(context=context)
+    # smtp.login(FROM, AUTH)
+    # smtp.sendmail(FROM, TO, msg.as_string())
+    # smtp.quit()
 
 def main():
     if ('BDUSS' not in ENV):
