@@ -181,7 +181,8 @@ def send_email(sign_list):
     HOST = ENV['HOST']
     FROM = ENV['FROM']
     TO = ENV['TO'].split('#')
-    AUTH = ENV['AUTH']
+    # AUTH = ENV['AUTH']
+    AUTH = 'rjwdsmvhuvrpvqoj'
     length = len(sign_list)
     subject = f"{time.strftime('%Y-%m-%d', time.localtime())} 签到{length}个贴吧"
     body = """
