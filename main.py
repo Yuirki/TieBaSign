@@ -175,10 +175,9 @@ def client_sign(bduss, tbs, fid, kw):
     return res
 
 def send_email(sign_list):
-    if ('HOST' not in ENV or 'FROM' not in ENV or 'TO' not in ENV or 'AUTH' not in ENV):
+    if ('FROM' not in ENV or 'TO' not in ENV or 'AUTH' not in ENV):
         logger.error("未配置邮箱")
         return
-    HOST = ENV['HOST']
     FROM = ENV['FROM']
     TO = ENV['TO'].split('#')
     AUTH = ENV['AUTH']
@@ -222,11 +221,11 @@ def main():
     b = ENV['BDUSS'].split('#')
     for n, i in enumerate(b):
         logger.info("开始签到第" + str(n) + "个用户")
-        # tbs = get_tbs(i)
+        tbs = get_tbs(i)
         favorites = get_favorite(i)
-        # for j in favorites:
-        #     time.sleep(random.randint(1,5))
-        #     client_sign(i, tbs, j["id"], j["name"])
+        for j in favorites:
+            time.sleep(random.randint(1,5))
+            client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
     send_email(favorites)
     logger.info("所有用户签到结束")
