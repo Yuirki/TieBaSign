@@ -217,15 +217,15 @@ def main():
         logger.error("未配置BDUSS")
         return
     b = ENV['BDUSS'].split('#')
-    # for n, i in enumerate(b):
-    #     logger.info("开始签到第" + str(n+1) + "个用户")
-    #     tbs = get_tbs(i)
-    #     favorites = get_favorite(i)
-    #     for j in favorites:
-    #         time.sleep(random.randint(1,5))
-    #         client_sign(i, tbs, j["id"], j["name"])
-    #     logger.info("完成第" + str(n) + "个用户签到")
-    send_email(favorites)
+    for n, i in enumerate(b):
+        logger.info("开始签到第" + str(n+1) + "个用户")
+        # tbs = get_tbs(i)
+        favorites = get_favorite(i)
+        # for j in favorites:
+        #     time.sleep(random.randint(1,5))
+        #     client_sign(i, tbs, j["id"], j["name"])
+        # logger.info("完成第" + str(n) + "个用户签到")
+    # send_email(favorites)
     logger.info("所有用户签到结束")
 
 
