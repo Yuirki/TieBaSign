@@ -207,6 +207,7 @@ def send_email(sign_list):
     msg['subject'] = subject
     smtp = smtplib.SMTP('smtp.office365.com',587)
     # smtp.connect(HOST)
+    smtp.starttls()
     smtp.login(FROM, AUTH)
     smtp.sendmail(FROM, TO, msg.as_string())
     smtp.quit()
