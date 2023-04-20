@@ -6,7 +6,6 @@ import time
 import copy
 import logging
 import random
-import ssl
 
 import smtplib
 from email.mime.text import MIMEText
@@ -180,12 +179,8 @@ def send_email(sign_list):
         return
     HOST = ENV['HOST']
     FROM = ENV['FROM']
-    # FROM = 'yuirki.tieba@outlook.com'
     TO = ENV['TO'].split('#')
-    # TO = '1964967996@qq.com'
     AUTH = ENV['AUTH']
-    # AUTH = 'rjwdsmvhuvrpvqoj'
-    logger.info(HOST,FROM,TO,AUTH)
     length = len(sign_list)
     subject = f"{time.strftime('%Y-%m-%d', time.localtime())} 签到{length}个贴吧"
     body = """
@@ -210,13 +205,11 @@ def send_email(sign_list):
         """
     msg = MIMEText(body, 'html', 'utf-8')
     msg['subject'] = subject
-    context = ssl.create_default_context()
-    smtp = smtplib.SMTP('smtp.office365.com',587)
-    # smtp.connect(HOST)
-    # smtp.starttls(context=context)
-    # smtp.login(FROM, AUTH)
-    # smtp.sendmail(FROM, TO, msg.as_string())
-    # smtp.quit()
+    smtp = smtplib.SMTP()
+    smtp.connect(HOST)
+    smtp.login(FROM, AUTH)
+    smtp.sendmail(FROM, TO, msg.as_string())
+    smtp.quit()
 
 def main():
     if ('BDUSS' not in ENV):
@@ -224,13 +217,13 @@ def main():
         return
     b = ENV['BDUSS'].split('#')
     for n, i in enumerate(b):
-        logger.info("开始签到第" + str(n+1) + "个用户")
+        logger.info("开始签到第" + str(n) + "个用户")
         # tbs = get_tbs(i)
         favorites = get_favorite(i)
         # for j in favorites:
         #     time.sleep(random.randint(1,5))
         #     client_sign(i, tbs, j["id"], j["name"])
-        # logger.info("完成第" + str(n) + "个用户签到")
+        logger.info("完成第" + str(n) + "个用户签到")
     send_email(favorites)
     logger.info("所有用户签到结束")
 
