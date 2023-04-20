@@ -208,8 +208,8 @@ def send_email(sign_list):
     # 创建SSL上下文对象
     context = ssl.create_default_context()
     msg['subject'] = subject
-    smtp = smtplib.SMTP()
-    smtp.connect(HOST)
+    smtp = smtplib.SMTP('smtp.office365.com',587)
+    # smtp.connect(HOST)
     smtp.starttls(context=context)
     smtp.login(FROM, AUTH)
     smtp.sendmail(FROM, TO, msg.as_string())
