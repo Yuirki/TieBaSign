@@ -179,12 +179,13 @@ def send_email(sign_list):
         logger.error("未配置邮箱")
         return
     HOST = ENV['HOST']
-    # FROM = ENV['FROM']
-    FROM = 'yuirki.tieba@outlook.com'
-    # TO = ENV['TO'].split('#')
-    TO = '1964967996@qq.com'
-    # AUTH = ENV['AUTH']
-    AUTH = 'rjwdsmvhuvrpvqoj'
+    FROM = ENV['FROM']
+    # FROM = 'yuirki.tieba@outlook.com'
+    TO = ENV['TO'].split('#')
+    # TO = '1964967996@qq.com'
+    AUTH = ENV['AUTH']
+    # AUTH = 'rjwdsmvhuvrpvqoj'
+    logger.info(HOST,FROM,TO,AUTH)
     length = len(sign_list)
     subject = f"{time.strftime('%Y-%m-%d', time.localtime())} 签到{length}个贴吧"
     body = """
