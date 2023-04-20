@@ -205,9 +205,10 @@ def send_email(sign_list):
         """
     msg = MIMEText(body, 'html', 'utf-8')
     msg['subject'] = subject
+    context = ssl.create_default_context()
     smtp = smtplib.SMTP('smtp.office365.com',587)
     # smtp.connect(HOST)
-    smtp.starttls()
+    smtp.starttls(context=context)
     smtp.login(FROM, AUTH)
     smtp.sendmail(FROM, TO, msg.as_string())
     smtp.quit()
