@@ -181,7 +181,8 @@ def send_email(sign_list):
     HOST = ENV['HOST']
     # FROM = ENV['FROM']
     FROM = 'yuirki.tieba@outlook.com'
-    TO = ENV['TO'].split('#')
+    # TO = ENV['TO'].split('#')
+    TO = '1964967996@qq.com'
     # AUTH = ENV['AUTH']
     AUTH = 'rjwdsmvhuvrpvqoj'
     length = len(sign_list)
